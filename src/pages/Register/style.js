@@ -1,15 +1,23 @@
 import styled,{ css } from 'styled-components';
 
 export const Frame = styled.div`
-background-color: #925ABE;
-display:flex;
-min-height:100vh;
-flex-direction:column;
-align-items:center;
-justify-content:center;
+
+form{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+    background-color: #925ABE;
+    display:flex;
+    min-height:100vh;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 
 input,button{
     font-family: 'Raleway', sans-serif;
+    font-size:20px;
     margin-bottom:13px;
     border-radius: 5px;
     border:none;
@@ -56,4 +64,7 @@ a{
     letter-spacing: 0em;
     color:#fff;
 }
+
+
+
 `
