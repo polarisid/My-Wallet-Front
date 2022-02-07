@@ -1,7 +1,31 @@
 import styled,{ css } from 'styled-components';
 
+export const SaldoContainer =styled.div`
+    display: flex;
+    align-items:center;
+    justify-content:space-between;
+    background-color:#fff;
+    width: 99%;
+
+    .value{
+        color:#03AC00;
+        ${props => (props.id) && css`
+            color: #C70000; `
+    }}
+    }
+
+    .saldo{
+        font-family: Raleway;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        letter-spacing: 0em;
+    }
+`
 
 export const Frame = styled.div`
+
 
 @keyframes scale-in {
   0% {
@@ -74,6 +98,7 @@ button{
 
 `
 export const Historic =styled.div`
+    position: relative;
     margin-top:10px;
     display:flex;
     flex-direction:column;
@@ -81,12 +106,12 @@ export const Historic =styled.div`
     font-family: Raleway;
     background-color: #fff;
     width:90%;
-    /* min-height:400px;
-    max-height:450px; */
     height:65vh;
     border-radius: 5px;
     padding:20px 10px;
     overflow-y: scroll;
+
+
 `
 
 export const Item = styled.div`

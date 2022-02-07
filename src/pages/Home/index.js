@@ -1,7 +1,7 @@
-import { Frame,Historic,Item,Modal } from "./style";
+import { Frame,Historic,Item,Modal,SaldoContainer } from "./style";
 import { Link,useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { useEffect,useState } from "react";
+import { useEffect,useState, useRef } from "react";
 import api from "../../services/api";
 export default function HomePage(){
     const navigate =useNavigate();
@@ -10,8 +10,10 @@ export default function HomePage(){
     const [modal,setModalState]= useState({state:false,type:""});
     const [form,setForm]=useState({name:"",value:"",type:""})
     const [historic, setHistoric] = useState([]);
+  
    
     useEffect(loadWallet, []);
+    
     function logout(){
         login([])
         alert("Até logo ;<");
@@ -26,7 +28,7 @@ export default function HomePage(){
         promisse.catch(error=>{
             alert(error.response.data.message)
             navigate("/")
-        })       
+        })      
       }
     function openModal(e){
         setModalState({state:!modal.state,type:e.target.id})
@@ -46,6 +48,13 @@ export default function HomePage(){
         console.log(form)
         clean()
 
+    }
+
+    function count(){
+        let value=0;
+       historic.map(item=>{if(item.type=="input"){value=value+parseFloat(item.value)}else{value=value-parseFloat(item.value)}}) 
+       console.log(value)
+       return value.toLocaleString('pt-BR')
     }
     return(
         <>
@@ -81,8 +90,9 @@ export default function HomePage(){
 
             <Historic>
                 {historic.length>0?historic.map((item)=>
-                <Item type={item.type}> <div><p className="date">{item.date}</p><p>{item.name}</p></div> <p className="value" >{item.value}</p></Item>):
+                <Item type={item.type}> <div><p className="date">{item.date}</p><p>{item.name}</p></div> <p className="value" >{item.value.toLocaleString('pt-BR')}</p></Item>):
                 <p>Não há registros de entrada ou saída</p>}
+                <SaldoContainer id={count()<0} > <p className="saldo">Saldo</p> <p className="value" >{count()}</p></SaldoContainer>
             </Historic>
             <div className="bottom-content">
                 <button id="entrada" onClick={(e)=>openModal(e)}><ion-icon name="add-circle-outline"></ion-icon> <div><p>Nova</p><p>entrada</p></div></button>
