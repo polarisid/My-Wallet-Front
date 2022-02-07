@@ -89,10 +89,12 @@ export default function HomePage(){
             </div>
 
             <Historic>
+                
                 {historic.length>0?historic.map((item)=>
                 <Item type={item.type}> <div><p className="date">{item.date}</p><p>{item.name}</p></div> <p className="value" >{item.value.toLocaleString('pt-BR')}</p></Item>):
                 <p>Não há registros de entrada ou saída</p>}
-                <SaldoContainer id={count()<0} > <p className="saldo">Saldo</p> <p className="value" >{count()}</p></SaldoContainer>
+                
+            <SaldoContainer id={count()<0} > <p className="saldo">Saldo</p> <p className="value" >{count()}</p></SaldoContainer>
             </Historic>
             <div className="bottom-content">
                 <button id="entrada" onClick={(e)=>openModal(e)}><ion-icon name="add-circle-outline"></ion-icon> <div><p>Nova</p><p>entrada</p></div></button>

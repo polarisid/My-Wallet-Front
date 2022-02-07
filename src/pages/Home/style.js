@@ -110,6 +110,7 @@ export const Historic =styled.div`
     border-radius: 5px;
     padding:20px 10px;
     overflow-y: scroll;
+   
 
 
 `
