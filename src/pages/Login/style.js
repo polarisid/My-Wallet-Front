@@ -1,6 +1,12 @@
 import styled,{ css } from 'styled-components';
 
 export const Frame = styled.div`
+form{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
 background-color: #925ABE;
 display:flex;
 min-height:100vh;
@@ -9,6 +15,7 @@ align-items:center;
 justify-content:center;
 
 input,button{
+    font-size:20px;
     font-family: 'Raleway', sans-serif;
     margin-bottom:13px;
     border-radius: 5px;
