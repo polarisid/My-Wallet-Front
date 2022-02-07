@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://mywalletbackendapp.herokuapp.com/';
+const BASE_URL = 'https://mywalletbackendapp.herokuapp.com';
  function login(body) {
     const promise = axios.post(`${BASE_URL}/sign-in`, body);
     return promise;
