@@ -1,12 +1,16 @@
 import { Frame,Historic,Item,Modal,SaldoContainer } from "./style";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import {ThreeDots} from 'react-loader-spinner';
 import { Link,useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import {InputStyled,ButtonStyled} from "../Components/formStyled"
 import { useEffect,useState, useRef } from "react";
 import api from "../../services/api";
 export default function HomePage(){
     const navigate =useNavigate();
     const {auth,login} = useAuth();
     const {token,userId}=auth;
+    const [disabled,setDisabled] = useState(false)
     const [modal,setModalState]= useState({state:false,type:""});
     const [form,setForm]=useState({name:"",value:"",type:""})
     const [historic, setHistoric] = useState([]);
@@ -37,16 +41,20 @@ export default function HomePage(){
         setForm({name:"",value:"",type:""})
     }
     function submit(event){
+        setDisabled(true)
         event.preventDefault();
         
         const promisse = api.postWallet(form,token,userId);
         promisse.then((response)=>{
             setModalState({...modal,state:!modal.state})
             loadWallet();
-            
+            setDisabled(false)
         })
-        console.log(form)
+        promisse.catch((e)=>{
+            console.log(e);setDisabled(false)})
         clean()
+       
+
 
     }
 
@@ -64,22 +72,26 @@ export default function HomePage(){
                         <div className="top"><h1>Nova {modal.type}</h1> <ion-icon onClick={(e)=>{setModalState({...modal,state:!modal.state});clean()}} name="close-circle-outline"></ion-icon></div>
                         <form onSubmit={submit}>
                             <input 
+                            disabled={disabled}
                             required 
                             type="number" 
                             placeholder="Valor"
                             onChange={(e) =>{setForm({ ...form, [e.target.name]: parseFloat(e.target.value),type:modal.type})}}
                             value={form.value}
                             name="value"
-                            ></input>
+                            />
                             <input 
+                            disabled={disabled}
                             required 
                             type="text" 
                             placeholder="Descrição"
                             onChange={(e) =>{setForm({ ...form, [e.target.name]: e.target.value,type:modal.type })}}
                             value={form.name}
                             name="name"
-                           ></input>
-                            <button type="submit">Salvar {modal.type}</button>
+                           />
+                            <ButtonStyled disabled={disabled} type="submit">                {disabled?
+                    <ThreeDots type="ThreeDots" color="#FFFFFF" height={50} width={50} />
+                :`Salvar ${modal.type}`}</ButtonStyled>
                         </form>
                     </div>                    
                 </Modal>
