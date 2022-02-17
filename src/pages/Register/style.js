@@ -15,35 +15,7 @@ form{
     align-items:center;
     justify-content:center;
 
-input,button{
-    font-family: 'Raleway', sans-serif;
-    font-size:20px;
-    margin-bottom:13px;
-    border-radius: 5px;
-    border:none;
-    height:58px;
-    width:50%;
-}
-button{
-    color:#fff;
-    background-color:#A328D6 ;
-    font-family: Raleway;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 23px;
-    letter-spacing: 0em;
-}
-input::placeholder{
-    color:#000;
-    padding:10px;
-    font-family: 'Raleway', sans-serif;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 23px;
-    letter-spacing: 0em;
-}
+
 h1{
     margin-bottom:24px;
     font-family: 'Saira Stencil One', cursive;
